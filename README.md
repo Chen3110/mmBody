@@ -2,8 +2,7 @@
 
 ## Mesh Results
 
-The mesh results provide parameters of SMPL-X and 3D coordinates of joints and vertices. For the "pose" parameters of each frame, first 3 dimensions represent the root translation, 4-6 represent the root rotation, and the rest represent rotations of 21 body joints. The SMPL-X model can be downloaded at https://smpl-x.is.tue.mpg.de/index.html.
-
+The mesh results include parameters of SMPL-X and 3D coordinates of joints and vertices. For the "pose" parameters of each frame, the first 3 dimensions denote the root translation, and 4-6 represent the root rotation. The rest dimensions represent rotations of 21 body joints. The SMPL-X model can be downloaded from https://smpl-x.is.tue.mpg.de/index.html.
 ## Calibration
 
 We provide calibration matrix for three sub-system. We set the mmWave radar as the target coordinate system. You can also transform it to the camera system by using the calibration matrix.
