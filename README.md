@@ -3,8 +3,19 @@
 ## Project page
 https://chen3110.github.io/mmbody/index.html
 
-## Data Explanation
+## Dataset Download
+To download the dataset, please send us an e-mail (anjunchen@zju.edu.cn) including contact details (title, full name, organization, and country) and the purpose for downloading the dataset. Important note for students and post-docs: we hope to konw the contact details of your academic supervisor. By sending the e-mail you accept the following terms and conditions.
 
+### Terms and Conditions
+When you download and use the mmBody dataset, please carefully read the following terms and conditions. Downloading and using the dataset means you have read and agree to them. Any violation of the terms of this agreement will automatically terminate your rights under this license.
+The materials are developed at the State Key Laboratory of Industrial Control Technology in Zhejiang University. Any copyright and patent right are owned by it.
+- The dataset is only available for non-commercial academic research and education purposes.
+- Any other use, including incorporation in a commercial product, using in a commercial service, and further developing commercial products is banned.
+- The dataset can't be modified, re-sold and redistributed without our permission.
+- Please cite the paper when you make use of the dataset and idea.
+For any questions of the dataset, please send email to qi.ye@zju.edu.cn
+
+## Data Explanation
 ### Mesh Results
 
 The mesh results include parameters of SMPL-X and 3D coordinates of joints and vertices. For the "pose" parameters of each frame, the first 3 dimensions denote the root translation, and 4-6 represent the root rotation. The rest dimensions represent rotations of 21 body joints. The SMPL-X model can be downloaded from https://smpl-x.is.tue.mpg.de/index.html.
