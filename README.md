@@ -14,6 +14,7 @@ We provide calibration matrix for three sub-system. We set the mmWave radar as t
 
 ### Intrinsic of Cameras
 
+```
 INTRINSIC = {
     'master': ([
         [969.48345947265625,    0,                  1024.9678955078125],
@@ -25,6 +26,7 @@ INTRINSIC = {
         [0,                     0,                  1                   ]
     ])
 }
+```
 
 ## BibTeX
 @inproceedings{chen2022mmbody,\
