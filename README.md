@@ -15,9 +15,10 @@ The materials are developed at the State Key Laboratory of Industrial Control Te
 - Please cite the paper when you make use of the dataset and idea.
 For any questions of the dataset, please send email to qi.ye@zju.edu.cn
 
-## Data Explanation
-### Specifications of Radar
+## Specifications of Radar
 https://arberobotics.com/wp-content/uploads/2021/05/4D-Imaging-radar-product-overview.pdf
+
+## Data Explanation
 
 ### Coordinates of Radar
 X represents horizontal, Y represents depth, and Z represents height.
