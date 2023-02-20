@@ -20,12 +20,13 @@ https://arberobotics.com/wp-content/uploads/2021/05/4D-Imaging-radar-product-ove
 
 ## Data Explanation
 
-### Coordinates of Radar
-X represents horizontal, Y represents depth, and Z represents height.
-
 ### Mesh Results
 
 The mesh results include parameters of SMPL-X and 3D coordinates of joints and vertices. For the "pose" parameters of each frame, the first 3 dimensions denote the root translation, and 4-6 represent the root rotation. The rest dimensions represent rotations of 21 body joints. The SMPL-X model can be downloaded from https://smpl-x.is.tue.mpg.de/index.html.
+
+### Coordinates of Radar
+X represents horizontal, Y represents depth, and Z represents height.
+
 ### Calibration
 
 We provide calibration matrix for three sub-system. We set the mmWave radar as the target coordinate system. You can also transform it to the camera system by using the calibration matrix. 
