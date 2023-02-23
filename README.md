@@ -29,11 +29,11 @@ X represents horizontal, Y represents depth, and Z represents height.
 
 ### Calibration
 
-We provide calibration matrix for three sub-system. We set the mmWave radar as the target coordinate system. You can also transform it to the camera system by using the calibration matrix. 
+We provide calibration matrix for three sub-system. We set the mmWave radar as the world coordinate system. You can also transform the coordinates to the sub-system by using the calibration matrix. The transformation matrixes in the calib.tex are in sensor2world format. 
 
 ### Intrinsic of Cameras
 
-```
+```python
 INTRINSIC = {
     'master': ([
         [969.48345947265625,    0,                  1024.9678955078125],
