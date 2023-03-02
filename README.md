@@ -49,9 +49,9 @@ INTRINSIC = {
 
 ## BibTeX
 @inproceedings{chen2022mmbody,\
-title={mmBody Benchmark: 3D Body Reconstruction Dataset and Analysis for Millimeter Wave Radar},\
-author={Chen, Anjun and Wang, Xiangyu and Zhu, Shaohao and Li, Yanxu and Chen, Jiming and Ye, Qi},\
-booktitle={Proceedings of the 30th ACM International Conference on Multimedia},\
-pages={3501--3510},\
-year={2022}\
+    title={mmBody Benchmark: 3D Body Reconstruction Dataset and Analysis for Millimeter Wave Radar},\
+    author={Chen, Anjun and Wang, Xiangyu and Zhu, Shaohao and Li, Yanxu and Chen, Jiming and Ye, Qi},\
+    booktitle={Proceedings of the 30th ACM International Conference on Multimedia},\
+    pages={3501--3510},\
+    year={2022}\
 }
