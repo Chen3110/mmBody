@@ -25,7 +25,7 @@ https://arberobotics.com/wp-content/uploads/2021/05/4D-Imaging-radar-product-ove
 The mesh results include parameters of SMPL-X and 3D coordinates of joints and vertices. For the "pose" parameters of each frame, the first 3 dimensions denote the root translation, and 4-6 represent the root rotation. The rest dimensions represent rotations of 21 body joints. The SMPL-X model can be downloaded from https://smpl-x.is.tue.mpg.de/index.html.
 
 ### Dimensions of Radar Point Cloud
-Each point of the radar point cloud for a frame contains its 3D location, range velocity, amplitude, and energy power of a reflected wave of the corresponding point in the scene. X represents horizontal, Y represents depth, and Z represents height.
+Each point of the radar point cloud for a frame contains its 3D location, range velocity, amplitude, and energy power of a reflected wave of the corresponding point in the scene. For the 3D location, X represents horizontal, Y represents depth, and Z represents height.
 
 ### Calibration
 
