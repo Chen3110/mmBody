@@ -29,7 +29,7 @@ Each point of the radar point cloud for a frame contains its 3D location, range 
 
 ### Calibration
 
-We provide calibration matrix for three sub-system. We set the mmWave radar as the world coordinate system. You can also transform the coordinates to the sub-system by using the calibration matrix. The transformation matrixes in the calib.txt are in the sensor2world format. 
+We provide calibration matrix for three sub-system. We set the mmWave radar as the world coordinate system and transform the labels obtained from the MoCap system to it. You can also transform the coordinates to the sub-system by using the calibration matrix. The transformation matrixes in the calib.txt are in the sensor2world format. 
 
 ### Intrinsic of Cameras
 
