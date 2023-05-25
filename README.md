@@ -13,7 +13,7 @@ The materials are developed at the State Key Laboratory of Industrial Control Te
 - Any other use, including incorporation in a commercial product, using in a commercial service, and further developing commercial products is banned.
 - The dataset can't be modified, re-sold and redistributed without our permission.
 - Please cite the paper when you make use of the dataset and idea.
-For any questions of the dataset, please send email to qi.ye@zju.edu.cn
+For any questions of the dataset, please send email to anjunchen@zju.edu.cn
 
 ## Specifications of Radar
 https://arberobotics.com/wp-content/uploads/2021/05/4D-Imaging-radar-product-overview.pdf
