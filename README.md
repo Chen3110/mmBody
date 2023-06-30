@@ -47,6 +47,9 @@ INTRINSIC = {
 }
 ```
 
+### Baseline
+We choose P4Transformer and VIBE for the point- and image-based reconstruction. Please consider citing them if they also help on your project.
+
 ## BibTeX
 ```
 @inproceedings{chen2022mmbody,
