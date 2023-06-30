@@ -48,7 +48,7 @@ INTRINSIC = {
 ```
 
 ### Baseline
-We choose P4Transformer and VIBE for the point- and image-based reconstruction. Please consider citing them if they also help on your project.
+We use [P4Transformer](https://openaccess.thecvf.com/content/CVPR2021/papers/Fan_Point_4D_Transformer_Networks_for_Spatio-Temporal_Modeling_in_Point_Cloud_CVPR_2021_paper.pdf) and [VIBE](https://arxiv.org/abs/1912.05656) for the point- and image-based reconstruction. Please consider citing them if they also help on your project.
 
 ## BibTeX
 ```
