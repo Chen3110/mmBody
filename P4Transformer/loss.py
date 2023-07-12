@@ -3,7 +3,7 @@ import torch.nn.functional as F
 from torch.nn.modules.loss import _Loss
 import torch.nn as nn
 import numpy as np
-from human_body_prior.body_model.body_model import SMPLXModel
+from human_body_prior.body_model.body_model.body_model import BodyModel as SMPLXModel
 from mosh.config import SMPLX_MODEL_NEUTRAL_PATH, SMPLX_MODEL_FEMALE_PATH, SMPLX_MODEL_MALE_PATH
 import matplotlib.pyplot as plt
 import cv2
