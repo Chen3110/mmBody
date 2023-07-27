@@ -11,7 +11,7 @@ class mmBodySequenceLoader(object):
         self.skip_tail = skip_tail
         self.resource = resource
         # load transformation matrix
-        with os.pathen(os.path.join(seq_path, 'calib.txt')) as f:
+        with os.open(os.path.join(seq_path, 'calib.txt')) as f:
             calib = eval(f.readline())
         self.calib = {
             'image':calib['kinect_master'],
