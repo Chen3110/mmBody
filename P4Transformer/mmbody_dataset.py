@@ -53,6 +53,7 @@ class mmBody(Dataset):
         self.input_data = kwargs.get('input_data', ['radar'])
         self.num_points = kwargs.get('num_points', 1024)
         self.seq_idxes = kwargs.get('seq_idxes', range(20))
+        self.features = kwargs.get('feat_dim', 3)
         self.init_index_map()
 
     def init_index_map(self):
