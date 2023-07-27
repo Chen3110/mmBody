@@ -112,7 +112,7 @@ class mmBody(Dataset):
         return target_pcl[index]
 
     def load_data(self, seq_loader, idx):
-        frame, _ = seq_loader[idx]
+        frame = seq_loader[idx]
         radar_pcl = frame['radar']
         radar_pcl[:,3:] /= np.array([5e-38, 5., 150.])
         
