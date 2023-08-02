@@ -5,15 +5,16 @@ import torch.nn as nn
 import numpy as np
 from human_body_prior.body_model.body_model import BodyModel
 from human_body_prior.body_model.lbs import lbs
-from mosh.config import SMPLX_MODEL_NEUTRAL_PATH, SMPLX_MODEL_FEMALE_PATH, SMPLX_MODEL_MALE_PATH
 import matplotlib.pyplot as plt
 import cv2
 import os
 import json
-
 from utils import rodrigues_2_rot_mat
 
-        
+SMPLX_MODEL_NEUTRAL_PATH = 'path_to_neutral_model'
+SMPLX_MODEL_FEMALE_PATH = 'path_to_female_model'
+SMPLX_MODEL_MALE_PATH = 'path_to_male_model'
+
 class LossManager():
     def __init__(self, ding_bot=None) -> None:
         super(LossManager).__init__()
@@ -167,7 +168,7 @@ class MeshLoss(_Loss):
             self.smplx_model[2] = SMPLXModel(bm_fname=SMPLX_MODEL_NEUTRAL_PATH, num_betas=16, num_expressions=0, device=device)
         self.scale = scale
 
-    def forward(self, input: torch.Tensor, target: torch.Tensor, use_gender: int = 0, train: bool = True) -> torch.Tensor:
+    def forward(self, input: torch.Tensor, target: torch.Tensor, use_gender: int = 0, train: bool = True, use_rodrigues=False) -> torch.Tensor:
 
         _input = input * self.scale
         _target = target * self.scale
@@ -177,11 +178,11 @@ class MeshLoss(_Loss):
         else:
             input_model = target_model = self.smplx_model[0 if target[0][-1] < 0.5 else 1]
 
-        input_result = input_model(pose_body=_input[:, :-16],betas=_input[:, -16:],use_rodrigues=False)
+        input_result = input_model(pose_body=_input[:,:-16], betas=_input[:,-16:], use_rodrigues=use_rodrigues)
         input_verts = input_result['verts']
         input_joints = input_result['joints']
 
-        target_result = target_model(pose_body=_target[:, :-16],betas=_target[:, -16:],use_rodrigues=False)
+        target_result = target_model(pose_body=_target[:,:-16], betas=_target[:,-16:], use_rodrigues=use_rodrigues)
         target_verts = target_result['verts']
         target_joints = target_result['joints']
         

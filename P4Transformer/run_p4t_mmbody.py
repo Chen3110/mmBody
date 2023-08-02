@@ -47,7 +47,7 @@ def train_one_epoch(args, model, losses, criterions, loss_weight, optimizer, lr_
                                         torch.cat((target[:,:3], target_mat, target[:,-16:]), -1), args.use_gender)
         else:
             losses.update_loss("pose_loss", loss_weight[1]*criterions["mse"](output[:,3:-16],target[:,3:-16]))
-            v_loss, j_loss = criterions["smpl"](output, target, args.use_gender)
+            v_loss, j_loss = criterions["smpl"](output, target, args.use_gender, use_rodrigues=True)
         # shape loss
         losses.update_loss("shape_loss", loss_weight[2]*criterions["mse"](output[:,-16:], target[:,-16:]))
         # joints loss
