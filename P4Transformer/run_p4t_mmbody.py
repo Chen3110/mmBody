@@ -11,7 +11,7 @@ import torchvision
 import utils
 from utils import rotation6d_2_rot_mat, rodrigues_2_rot_mat, WarmupMultiStepLR
 from mmbody_dataset import mmBody as Dataset
-from loss import MoshLoss, GeodesicLoss
+from loss import MeshLoss, GeodesicLoss
 import model as Models
 from loss import LossManager
 
@@ -186,7 +186,7 @@ def main(args):
     losses = LossManager()
 
     mse_criterion = nn.MSELoss()
-    smpl_criterion = MoshLoss(device=device, scale=args.normal_scale)
+    smpl_criterion = MeshLoss(device=device, scale=args.normal_scale)
     rot_mat_criterion = GeodesicLoss()
     entropy_criterion = nn.BCEWithLogitsLoss()
     criterions = dict(mse=mse_criterion, smpl=smpl_criterion, rot_mat=rot_mat_criterion, entropy=entropy_criterion)
