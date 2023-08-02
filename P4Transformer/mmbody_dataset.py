@@ -80,7 +80,6 @@ class mmBody(Dataset):
             if global_idx in range(self.index_map[seq_idx], self.index_map[seq_idx+1]):
                 frame_idx = global_idx - self.index_map[seq_idx]
                 return seq_idx, frame_idx
-        raise IndexError
 
     def pad_data(self, data, return_choices=False):
         # pad point cloud with the fixed num of points
@@ -94,7 +93,7 @@ class mmBody(Dataset):
             return data[r, :], r
         return data[r, :]
 
-    def filter_pcl(bounding_pcl: np.ndarray, target_pcl: np.ndarray, bound: float = 0.2, offset: float = 0):
+    def filter_pcl(self, bounding_pcl: np.ndarray, target_pcl: np.ndarray, bound: float = 0.2, offset: float = 0):
         """
         Filter out the pcls of pcl_b that is not in the bounding_box of pcl_a
         """

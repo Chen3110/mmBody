@@ -257,7 +257,7 @@ def parse_args():
     parser.add_argument('--clip_len', default=5, type=int, help='number of frames per clip')
     parser.add_argument('--num_points', default=1024, type=int, help='number of points per frame')
     parser.add_argument('--normal_scale', default=1, type=int, help='normal scale of labels')
-    parser.add_argument('--skip_head', default=0, type=int, help='number of skip frames')
+    parser.add_argument('--skip_head', default=5, type=int, help='number of skip frames')
     parser.add_argument('--new_gmm', action="store_true", help='new gmm')
     parser.add_argument('--output_dim', default=151, type=int, help='output dim')
     parser.add_argument('--use_6d_pose', default=1, type=int, help='use 6d pose')
