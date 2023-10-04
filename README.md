@@ -1,5 +1,8 @@
 # mmBody Benchmark: 3D Body Reconstruction Dataset and Analysis for Millimeter Wave Radar
 
+## News
+Our new work of fusion method ImmFusion for mmWave point clouds and RGB images has been released [here](https://github.com/Chen3110/ImmFusion).
+
 ## Project page
 https://chen3110.github.io/mmbody/index.html
 
