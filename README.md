@@ -51,7 +51,7 @@ INTRINSIC = {
 ```
 
 ## Baselines
-Our mesh results are obtained by fitting the [SMPL-X](https://smpl-x.is.tue.mpg.de/) body model to markers attached to subjects using [MoSh++](https://github.com/nghorbani/moshpp). We use [P4Transformer](https://openaccess.thecvf.com/content/CVPR2021/papers/Fan_Point_4D_Transformer_Networks_for_Spatio-Temporal_Modeling_in_Point_Cloud_CVPR_2021_paper.pdf) and [VIBE](https://arxiv.org/abs/1912.05656) for the point- and image-based reconstruction. Please consider citing them if they also help on your project.
+Our mesh results are obtained by fitting the [SMPL-X](https://smpl-x.is.tue.mpg.de/) body model to markers attached to subjects using [MoSh++](https://github.com/nghorbani/moshpp). We use [P4Transformer](https://github.com/hehefan/P4Transformer) and [VIBE](https://arxiv.org/abs/1912.05656) for the point- and image-based reconstruction. Please consider citing them if they also help on your project.
 
 ## BibTeX
 ```
