@@ -249,7 +249,7 @@ def parse_args():
     import argparse
     parser = argparse.ArgumentParser(description='P4Transformer Model Training')
 
-    parser.add_argument('--data_path', default='/home/nesc525/drivers/1,/home/nesc525/drivers/2,/home/nesc525/drivers/3', type=str, help='dataset')
+    parser.add_argument('--data_path', default='path/to/mmbody', type=str, help='dataset')
     parser.add_argument("--seq_idxes", type=str, default='') 
     parser.add_argument('--seed', default=35, type=int, help='random seed')
     parser.add_argument('--model', default='P4Transformer', type=str, help='model')
