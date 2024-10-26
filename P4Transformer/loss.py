@@ -105,8 +105,8 @@ class GeodesicLoss(nn.Module):
         m = torch.bmm(m1, m2.transpose(1, 2))  # batch*3*3
 
         cos = (m[:, 0, 0] + m[:, 1, 1] + m[:, 2, 2] - 1) / 2
-        cos = torch.min(cos, m1.new(np.ones(batch)))
-        cos = torch.max(cos, m1.new(np.ones(batch)) * -1)
+        cos = torch.min(cos, m1.new(np.ones(batch)) - self.eps)
+        cos = torch.max(cos, m1.new(np.ones(batch)) * -1 + self.eps)
 
         return torch.acos(cos)
 
@@ -179,11 +179,11 @@ class MeshLoss(_Loss):
             input_model = target_model = self.smplx_model[0 if target[0][-1] < 0.5 else 1]
 
         input_result = input_model(pose_body=_input[:,:-16], betas=_input[:,-16:], use_rodrigues=use_rodrigues)
-        input_verts = input_result['verts']
+        input_verts = input_result['vertices']
         input_joints = input_result['joints']
 
         target_result = target_model(pose_body=_target[:,:-16], betas=_target[:,-16:], use_rodrigues=use_rodrigues)
-        target_verts = target_result['verts']
+        target_verts = target_result['vertices']
         target_joints = target_result['joints']
         
         per_joint_err = torch.norm((input_joints - target_joints), dim=-1)
