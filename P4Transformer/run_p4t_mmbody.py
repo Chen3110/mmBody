@@ -293,7 +293,7 @@ def parse_args():
     # output
     parser.add_argument('--print_freq', default=100, type=int, help='print frequency')
     parser.add_argument('--num_frames', default=10000, type=int, help='number of test frames')
-    parser.add_argument('--output_dir', default='', type=str, help='path where to save')
+    parser.add_argument('--output_dir', default='./output', type=str, help='path where to save')
     # resume
     parser.add_argument('--resume', default='', help='resume from checkpoint')
     parser.add_argument('--start_epoch', default=0, type=int, metavar='N', help='start epoch')
