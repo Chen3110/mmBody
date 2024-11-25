@@ -8,13 +8,14 @@ import torch.utils.data
 from torch import nn
 import torchvision
 
+sys.path.append("modules")
+
 import utils
 from utils import rotation6d_2_rot_mat, rodrigues_2_rot_mat, WarmupMultiStepLR
 from mmbody_dataset import mmBody as Dataset
 from loss import MeshLoss, GeodesicLoss
 import model as Models
 from loss import LossManager
-
 
 def train_one_epoch(args, model, losses, criterions, loss_weight, optimizer, lr_scheduler, data_loader, device, epoch):
     model.train()
@@ -116,6 +117,7 @@ def evaluate(args, model, losses, criterions, data_loader, device, save_path='')
                 losses.update_loss("gender_loss", criterions["entropy"](output[:,-1], target[:,-1]))
 
             loss = losses.calculate_total_loss()
+            
 
             # could have been padded in distributed setup
             clip = clip.cpu().numpy()
@@ -126,13 +128,17 @@ def evaluate(args, model, losses, criterions, data_loader, device, save_path='')
 
         print("joints loss:", np.average(torch.tensor(losses.loss_dict["joints_loss"])))
         print("vertices loss:", np.average(torch.tensor(losses.loss_dict["vertices_loss"])))
+        print("mean joints error:", np.mean(torch.cat(per_joint_err).cpu().numpy()))
+        print("mean vertices error:", np.mean(torch.cat(per_vertex_err).cpu().numpy()))
+        print("max joints error:", np.mean(np.max(torch.cat(per_joint_err).cpu().numpy(), axis=1)))
+        print("max vertices error:", np.mean(np.max(torch.cat(per_vertex_err).cpu().numpy(), axis=1)))
 
     # gather the stats from all processes
     metric_logger.synchronize_between_processes()
 
 
 def main(args):
-    output_dir = os.path.join(args.output_dir, '{}'.format(args.input_data)) if args.output_dir else ''
+    output_dir = os.path.join(args.output_dir, '{}'.format(datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S"))) if args.output_dir else ''
     if output_dir and not os.path.exists(output_dir):
         utils.mkdir(os.path.join(output_dir, 'pth'))
 
@@ -149,7 +155,6 @@ def main(args):
     torch.cuda.set_device(args.device)
     device = torch.device('cuda')
     
-    seq_idxes = eval(args.seq_idxes) if args.seq_idxes else range(20)
     # Data loading code
     dataset = Dataset(
             data_path=args.data_path,
@@ -158,7 +163,7 @@ def main(args):
             train=args.train,
             input_data=args.input_data,
             test_scene=args.test_scene,
-            seq_idxes=seq_idxes,
+            seq_idxes=args.seq_idxes,
     )
 
     train_size = int(0.9 * len(dataset))
@@ -203,8 +208,7 @@ def main(args):
     model_without_ddp = model
 
     if args.resume:
-        resume = os.path.join(args.resume, '{}_{}'.format(args.input_data, args.feature_type), 'pth', 'checkpoint.pth')
-        checkpoint = torch.load(resume, map_location='cpu')
+        checkpoint = torch.load(args.resume, map_location='cpu')
         model_without_ddp.load_state_dict(checkpoint['model'])
         optimizer.load_state_dict(checkpoint['optimizer'])
         lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
@@ -219,8 +223,7 @@ def main(args):
         for epoch in range(args.start_epoch, args.epochs):
             train_one_epoch(args, model, losses, criterions, loss_weight, optimizer, lr_scheduler, data_loader_train, device, epoch)
             losses.calculate_epoch_loss(os.path.join(output_dir,"loss/train"), epoch)
-            list(evaluate(args, model, losses, criterions, data_loader_eval, device))
-            losses.calculate_epoch_loss(os.path.join(output_dir,"loss/eval"), epoch)
+            evaluate(args, model, losses, criterions, data_loader_eval, device)
 
             if output_dir:
                 checkpoint = {
@@ -250,7 +253,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='P4Transformer Model Training')
 
     parser.add_argument('--data_path', default='path/to/mmbody', type=str, help='dataset')
-    parser.add_argument("--seq_idxes", type=str, default='') 
+    parser.add_argument("--seq_idxes", type=int, default=20) 
     parser.add_argument('--seed', default=35, type=int, help='random seed')
     parser.add_argument('--model', default='P4Transformer', type=str, help='model')
     # input
@@ -281,13 +284,13 @@ def parse_args():
     parser.add_argument('-b', '--batch_size', default=32, type=int)
     parser.add_argument('--epochs', default=350, type=int, metavar='N', help='number of total epochs to run')
     parser.add_argument('-j', '--workers', default=4, type=int, metavar='N', help='number of data loading workers (default: 16)')
-    parser.add_argument('--lr', default=0.001, type=float, help='initial learning rate')
+    parser.add_argument('--lr', default=0.0001, type=float, help='initial learning rate')
     parser.add_argument('--momentum', default=0.9, type=float, metavar='M', help='momentum')
     parser.add_argument('--wd', '--weight_decay', default=1e-4, type=float, metavar='W', help='weight decay (default: 1e-4)', dest='weight_decay')
     parser.add_argument('--lr_milestones', nargs='+', default=[100,200], type=int, help='decrease lr on milestones')
     parser.add_argument('--lr_gamma', default=0.1, type=float, help='decrease lr by a factor of lr-gamma')
     parser.add_argument('--lr_warmup_epochs', default=10, type=int, help='number of warmup epochs')
-    parser.add_argument('--loss_weight', default="1,1,1,1,1,1", type=str, help='weight of loss')
+    parser.add_argument('--loss_weight', default="1,0.001,0.1,1,1,1", type=str, help='weight of loss')
     parser.add_argument('--use_gender', default=0, type=int, help='use gender')
     parser.add_argument('--device', default=0, type=int, help='cuda device')
     # output

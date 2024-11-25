@@ -11,9 +11,9 @@ import os
 import json
 from utils import rodrigues_2_rot_mat
 
-SMPLX_MODEL_NEUTRAL_PATH = 'path_to_neutral_model'
-SMPLX_MODEL_FEMALE_PATH = 'path_to_female_model'
-SMPLX_MODEL_MALE_PATH = 'path_to_male_model'
+SMPLX_MODEL_NEUTRAL_PATH = '/home/drivers/4/chen/AdaptiveFusion/models/smplx/neutral/model.npz'
+SMPLX_MODEL_FEMALE_PATH = '/home/drivers/4/chen/AdaptiveFusion/models/smplx/female/model.npz'
+SMPLX_MODEL_MALE_PATH = '/home/drivers/4/chen/AdaptiveFusion/models/smplx/male/model.npz'
 
 class LossManager():
     def __init__(self, ding_bot=None) -> None:
@@ -123,8 +123,8 @@ class GeodesicLoss(nn.Module):
 
 
 class SMPLXModel(BodyModel):
-    def __init__(self, num_betas=16, **kwargs):
-        super().__init__(bm_fname=SMPLX_MODEL_NEUTRAL_PATH, num_betas=num_betas, num_expressions=0, **kwargs)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def forward(self, pose_body, betas, use_rodrigues=True):
         device = pose_body.device
@@ -161,11 +161,11 @@ class MeshLoss(_Loss):
     def __init__(self, device: torch.device = torch.device('cpu'), size_average=None, reduce=None, reduction: str = 'mean', scale: float = 1) -> None:
         super().__init__(size_average=size_average, reduce=reduce, reduction=reduction)
         if self.smplx_model[0] is None:
-            self.smplx_model[0] = SMPLXModel(bm_fname=SMPLX_MODEL_FEMALE_PATH, num_betas=16, num_expressions=0, device=device)
+            self.smplx_model[0] = SMPLXModel(bm_fname=SMPLX_MODEL_FEMALE_PATH, num_betas=16, num_expressions=0).to(device)
         if self.smplx_model[1] is None:
-            self.smplx_model[1] = SMPLXModel(bm_fname=SMPLX_MODEL_MALE_PATH, num_betas=16, num_expressions=0, device=device)
+            self.smplx_model[1] = SMPLXModel(bm_fname=SMPLX_MODEL_MALE_PATH, num_betas=16, num_expressions=0).to(device)
         if self.smplx_model[2] is None:
-            self.smplx_model[2] = SMPLXModel(bm_fname=SMPLX_MODEL_NEUTRAL_PATH, num_betas=16, num_expressions=0, device=device)
+            self.smplx_model[2] = SMPLXModel(bm_fname=SMPLX_MODEL_NEUTRAL_PATH, num_betas=16, num_expressions=0).to(device)
         self.scale = scale
 
     def forward(self, input: torch.Tensor, target: torch.Tensor, use_gender: int = 0, train: bool = True, use_rodrigues=False) -> torch.Tensor:

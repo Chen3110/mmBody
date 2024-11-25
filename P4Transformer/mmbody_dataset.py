@@ -11,7 +11,7 @@ class mmBodySequenceLoader(object):
         self.skip_tail = skip_tail
         self.resource = resource
         # load transformation matrix
-        with os.open(os.path.join(seq_path, 'calib.txt')) as f:
+        with open(os.path.join(seq_path, 'calib.txt'), "rt") as f:
             calib = eval(f.readline())
         self.calib = {
             'image':calib['kinect_master'],
@@ -52,7 +52,7 @@ class mmBody(Dataset):
         self.test_scene = kwargs.get('test_scene', 'lab1')
         self.input_data = kwargs.get('input_data', ['radar'])
         self.num_points = kwargs.get('num_points', 1024)
-        self.seq_idxes = kwargs.get('seq_idxes', range(20))
+        self.seq_idxes = kwargs.get('seq_idxes', 20)
         self.features = kwargs.get('feat_dim', 3)
         self.init_index_map()
 
@@ -60,11 +60,11 @@ class mmBody(Dataset):
         # init the index map for each frame
         self.index_map = [0,]
         if self.train:
-            seq_dirs = ['sequence_{}'.format(i) for i in self.seq_idxes]
-            self.seq_paths = [os.path.join(self.data_path, p) for p in seq_dirs]
+            seq_dirs = ['sequence_{}'.format(i) for i in range(self.seq_idxes)]
+            self.seq_paths = [os.path.join(self.data_path, "train", p) for p in seq_dirs]
         else:
             seq_dirs = ['sequence_{}'.format(i) for i in range(2)]
-            self.seq_paths = [os.path.join(self.data_path, self.test_scene, p) for p in seq_dirs]
+            self.seq_paths = [os.path.join(self.data_path, "test", self.test_scene, p) for p in seq_dirs]
         
         print('Data path: ', self.seq_paths)
 
