@@ -2,6 +2,7 @@
 
 ## News
 Our new work of fusion method AdaptiveFusion has been released [here](https://chen3110.github.io/adaptivefusion/index.html).
+
 Our new work of fusion method ImmFusion for mmWave point clouds and RGB images has been released [here](https://github.com/Chen3110/ImmFusion).
 
 ## Project page
