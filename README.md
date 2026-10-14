@@ -1,13 +1,14 @@
 # mmBody Benchmark: 3D Body Reconstruction Dataset and Analysis for Millimeter Wave Radar
 
 ## News
+Our new work of fusion method AdaptiveFusion has been released [here](https://chen3110.github.io/adaptivefusion/index.html).
 Our new work of fusion method ImmFusion for mmWave point clouds and RGB images has been released [here](https://github.com/Chen3110/ImmFusion).
 
 ## Project page
 https://chen3110.github.io/mmbody/index.html
 
 ## Dataset Download
-To download the dataset, please send us an e-mail (anjun_chen@outlook.com) including contact details (title, full name, organization, and country) and the purpose for downloading the dataset. Important note for students and post-docs: we hope to know the contact details of your academic supervisor. By sending the e-mail you accept the following terms and conditions.
+To download the dataset, please send us an e-mail (anjunchen@xmu.edu.cn) including contact details (title, full name, organization, and country) and the purpose for downloading the dataset. Important note for students and post-docs: we hope to know the contact details of your academic supervisor. By sending the e-mail you accept the following terms and conditions.
 
 ### Terms and Conditions
 When you download and use the mmBody dataset, please carefully read the following terms and conditions. Downloading and using the dataset means you have read and agree to them. Any violation of the terms of this agreement will automatically terminate your rights under this license.
@@ -16,7 +17,7 @@ The materials are developed at the State Key Laboratory of Industrial Control Te
 - Any other use, including incorporation in a commercial product, use in a commercial service, and further development of commercial products is banned.
 - The dataset can't be modified, re-sold, or redistributed without our permission.
 - Please cite the paper when you make use of the dataset and idea.
-For any questions about the dataset, please send an email to anjun_chen@outlook.com
+For any questions about the dataset, please send an email to anjunchen@xmu.edu.cn
 
 ## Specifications of Radar
 https://arberobotics.com/wp-content/uploads/2021/05/4D-Imaging-radar-product-overview.pdf
