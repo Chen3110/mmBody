@@ -9,7 +9,7 @@ Our new work of fusion method ImmFusion for mmWave point clouds and RGB images h
 https://chen3110.github.io/mmbody/index.html
 
 ## Dataset Download
-To download the dataset, please send us an e-mail (anjunchen@xmu.edu.cn) including contact details (title, full name, organization, and country) and the purpose for downloading the dataset. Important note for students and post-docs: we hope to know the contact details of your academic supervisor. By sending the e-mail you accept the following terms and conditions.
+Download link：https://1drv.ms/f/s!Avl9WWi7S-inhoJvGldQwIFfv6V0iQ?e=UqbxjL
 
 ### Terms and Conditions
 When you download and use the mmBody dataset, please carefully read the following terms and conditions. Downloading and using the dataset means you have read and agree to them. Any violation of the terms of this agreement will automatically terminate your rights under this license.
